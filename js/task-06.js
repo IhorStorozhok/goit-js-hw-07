@@ -2,17 +2,24 @@ const inputEl = document.querySelector("#validation-input");
 inputEl.addEventListener("focus", onInpytFocus);
 inputEl.addEventListener("blur", onInpytFocusLost);
 
-function onInpytFocus() {}
+function onInpytFocus() {
+  inputEl.className = "";
+}
+
+const inputClassList = inputEl.classList;
+
+function classChanger(classToRemove, classToAdd) {
+  inputClassList.remove(classToRemove);
+  inputClassList.add(classToAdd);
+}
 
 function onInpytFocusLost(event) {
   if (
     event.currentTarget.value.length ===
     parseInt(inputEl.getAttribute("data-length"))
   ) {
-    inputEl.classList.remove("invalid");
-    inputEl.classList.add("valid");
+    classChanger("invalid", "valid");
   } else {
-    inputEl.classList.remove("valid");
-    inputEl.classList.add("invalid");
+    classChanger("valid", "invalid");
   }
 }
